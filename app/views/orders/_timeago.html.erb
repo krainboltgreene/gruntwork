@@ -1,0 +1,5 @@
+<% if timeago %>
+  <time class="text-muted" title="<%= timeago %>">
+    <%= time_ago_in_words(timeago) %> ago
+  </time>
+<% end %>

@@ -1,0 +1,30 @@
+<h1>New Order</h1>
+
+<%= form_for @order do |form| %>
+  <% if @order.errors.any? %>
+    <ul>
+      <% @order.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <section class="form-group">
+    <%= form.label :priority %>
+    <%= form.select :priority, Order.priorities.map {|name, _| [name.humanize, name]}, {}, class: "form-control" %>
+  </section>
+
+  <section class="form-group">
+    <%= form.label :subtype %>
+    <%= form.select :subtype, Order.subtypes.map {|name, _| [name.humanize.titleize, name]}, {}, class: "form-control" %>
+  </section>
+
+  <section class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
+  </section>
+
+  <section>
+    <%= form.submit class:"btn btn-default" %>
+  </section>
+<% end %>

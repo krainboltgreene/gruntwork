@@ -1,0 +1,18 @@
+<h1>Orders</h1>
+
+<nav>
+  <p>
+    <%= link_to "New Order", new_order_url, class: "btn btn-default" %>
+    <%= link_to "Available", orders_url(), class: "btn btn-default" %>
+    <%= link_to "My Requests", orders_url({filter: {account: "requester"}}), class: "btn btn-default" %>
+    <%= link_to "Urgent", orders_url({filter: {priority: "urgent"}}), class: "btn btn-default" %>
+    <%= link_to "Today", orders_url({filter: {day: "today"}}), class: "btn btn-default" %>
+    <%= link_to "Yesterday", orders_url({filter: {day: "yesterday"}}), class: "btn btn-default" %>
+    <%= link_to "Finished", orders_url({filter: {state: "finished"}}), class: "btn btn-default" %>
+    <%= link_to "All", orders_url({filter: "all"}), class: "btn btn-default" %>
+  </p>
+</nav>
+
+<section class="orders">
+  <%= render partial: "order", collection: @orders %>
+</section>

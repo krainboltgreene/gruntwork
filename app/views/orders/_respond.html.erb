@@ -1,0 +1,12 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Respond <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <% Response::MESSAGES.each.with_index do |message, index| %>
+      <li class="message-<%= index %>">
+        <%= link_to message, respond_order_path(order, response: {message: message}) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

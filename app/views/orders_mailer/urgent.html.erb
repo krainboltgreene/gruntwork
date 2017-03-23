@@ -1,0 +1,5 @@
+<%= @requester.name %> has created an URGENT order:
+
+<%= @order.subtype.humanize.titleize %>: <%= @order.description %>
+
+<%= link_to "Get more details here.", order_url(@order) %>

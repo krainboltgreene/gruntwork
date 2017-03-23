@@ -1,0 +1,45 @@
+<section class="panel panel-default <% if order.finished? %>panel-success<% end %>">
+  <header class="panel-heading">
+    <% if order.urgent? && order.available? %>
+      <span class="glyphicon glyphicon-fire text-danger" aria-hidden="true"></span>
+    <% end  %>
+
+    <% case order.state %>
+      <% when "finished" %>
+        <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+      <% when "canceled" %>
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+    <% end  %>
+
+    <%= link_to order.subtype, order_url(order) %>
+
+    <% if order.finished? %>
+      finished by <%= order.owner.name %>
+      <%= render partial: "timeago", object: order.finished_at %>
+    <% else%>
+      requested by <%= order.requester.name %>
+      <%= render partial: "timeago", object: order.created_at %>
+    <% end %>
+  </header>
+
+  <p class="panel-body">
+    <%= order.description %>
+  </p>
+
+  <% if order.available? %>
+    <% if order.responses %>
+      <ul class="responses list-group">
+        <%= render partial: "response", collection: order.responses %>
+      </ul>
+    <% end %>
+
+
+    <footer class="panel-footer">
+      <%= link_to "Finish", finish_order_path(order), class: "btn btn-success" %>
+
+      <%= render partial: "respond", locals: {order: order} %>
+
+      <%= link_to "Cancel", cancel_order_path(order), class: "btn btn-link" %>
+    </footer>
+  <% end %>
+</section>

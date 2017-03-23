@@ -1,0 +1,7 @@
+<li class="response list-group-item">
+  <strong><%= response.account.name %></strong>:
+  <%= response.message %>
+  <time class="text-muted" title="<%= response.created_at %>">
+    <%= time_ago_in_words(response.created_at) %> ago
+  </time>
+</li>
